@@ -3,6 +3,7 @@
 // Get our helper functions
 require_once("inc/functions.php");
 
+
 // Set variables for our request
 $api_key = "1r30mrvCFMfq2DLGuIXyY2veEJVgTtDD";
 $shared_secret = "TBB5wltKarRtKn5mUVZck9RxHePNN6Jo";

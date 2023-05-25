@@ -2,7 +2,7 @@
 
 // Set variables for our request
 $shop = $_GET['shop'];
-$api_key = "1r30mrvCFMfq2DLGuIXyY2veEJVgTtDD";
+$api_key = "1r30mrvCFMfq2DLSadinY2veEJVgTtDD";
 $scopes = "read_orders,write_products";
 $redirect_uri = "http://localhost/generate_token.php";
 
