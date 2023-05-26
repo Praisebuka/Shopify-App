@@ -2,8 +2,8 @@
 
 // Set variables for our request
 $shop = $_GET['shop'];
-$api_key = "1r30mrvCFMfq2DLSadinY2veEJVgTtDD";
-$scopes = "read_orders, write_products";
+$api_key = "1r30mrvCFMfq2DLSadinY2npEJVgTtDD";
+$scopes = "read_orders, write_products, read_themes, write_themes, write_script";
 $redirect_uri = "https://weeklyhow.com/apps/exampleApp/generate_token.php";
 
 // Build install or approval URL to redirect to

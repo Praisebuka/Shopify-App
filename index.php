@@ -21,7 +21,6 @@ $collectionList = json_decode($collectionList['response'], JSON_PRETTY_PRINT);
 $collectioni_id = $collectionList['custom_collections'] [0] ['id'];
 
 
-
 $collects = shopify_call($token, $shop, "/admin/api/2019-10/collects.json", array("collection_id" => $collection_id), 'GET');
 $collects = json_decode($collects['response'], JSON_PRETTY_PRINT);
 
@@ -38,6 +37,36 @@ foreach ($collects as $collect) {
         $title = $products['product'] ['title'];
     }
 }
+
+$theme = shopify_call($token, $shop, "/admin/api/2019-10/themes.json", array(), 'GET');
+$theme = json_decode($theme['response'], JSON_PRETTY_PRINT);
+
+foreach ($theme as $cur_theme) {
+    foreach ($cur_theme as $key => $value ) {
+        if ($value['role'] === 'main') {
+            echo "Theme ID: " . $value['id'] . "<br />";
+            echo "Theme Name: " . $value['name'] . "<br />";
+
+            $array = array(
+                'asset' => array(
+                    'key' => 'templates/index.liquid',
+                    'value' => '<h1>Hello Praise.....from Shopify!!!</h1>'
+                )
+            );
+
+            $assets = shopify_call($token, $shop, "/admin/api/2019-10/themes/". $value['id']. "/assests.json".$array, 'PUT');
+            $assets = json_decode($assets['response'], JSON_PRETTY_PRINT);
+
+        }
+    }
+}
+
+
+
+
+
+
+
 
 ?>
 
