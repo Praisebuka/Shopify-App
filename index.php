@@ -11,12 +11,16 @@ ksort($requests);
 $token = "089u398hf7wyhe7h3872uy48uje8h93428";
 $shop = "weeklyhow";
 
+# Displaying the Product's title and Images
+$image = '';
+$title = '';
+
 # Setting the collection variables
 $collectionList = shopify_call($token, $shop, "/admin/api/2019-10/custom_collections.json", array(), 'GET');
 $collectionList = json_decode($collectionList['response'], JSON_PRETTY_PRINT);
 $collectioni_id = $collectionList['custom_collections'] [0] ['id'];
 
-echo $collection_id;
+
 
 $collects = shopify_call($token, $shop, "/admin/api/2019-10/collects.json", array("collection_id" => $collection_id), 'GET');
 $collects = json_decode($collects['response'], JSON_PRETTY_PRINT);
@@ -27,11 +31,28 @@ foreach ($collects as $collect) {
         $products = shopify_call($token, $shop, "/admin/api/2019-10/products/". $value['product_id'] . ".json", array(), 'GET');
         $products = json_decode($products['response'], JSON_PRETTY_PRINT);
 
-        echo $products['product'] ['title'] . '<br />';
+        $images = shopify_call($token, $shop, "/admin/api/2019-10/products/". $value['product_id'] . "/imags.json", array(), 'GET');
+        $images = json_decode($images['response'], JSON_PRETTY_PRINT);
+
+        $image = $images['images'] [0] ['src'];
+        $title = $products['product'] ['title'];
     }
 }
 
-
-
-
 ?>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopify App</title>
+</head>
+<body>
+    
+    <h1>Praisebuka's version of Shopify</h1>
+    <img src="<?php echo $image; ?>" alt="The product image" style="width: 250px;">
+    <p> <?php echo $title; ?> </p>
+
+</body>
+</html>
