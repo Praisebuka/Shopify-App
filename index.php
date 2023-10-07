@@ -11,7 +11,7 @@ ksort($requests);
 $token = "089u398hf7wyhe7h3872uy48uje8h93428";
 $shop = "weeklyhow";
 
-# Displaying the Product's title and Images
+# Displaying the Product's title and Images 
 $image = '';
 $title = '';
 
